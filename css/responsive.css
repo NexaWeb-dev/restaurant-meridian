@@ -1,0 +1,84 @@
+/* =========================================================
+   Meridian Coffee Atlas: responsive rules and user preferences
+   ========================================================= */
+
+@media (min-width: 64em) {
+  .story__grid { grid-template-columns: 1fr 1fr; gap: clamp(3rem, 7vw, 7rem); }
+  .contact { grid-template-columns: 1fr 1.1fr; gap: clamp(3rem, 7vw, 7rem); }
+  .detail { grid-template-columns: minmax(0, 1.7fr) minmax(18rem, 1fr); gap: clamp(2.5rem, 5vw, 5rem); }
+  .foot__grid { grid-template-columns: 1.5fr .9fr 1fr .9fr; gap: 3rem; }
+}
+
+@media (max-width: 80em) {
+  .cities { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .nav__links { gap: 1.4rem; font-size: .7rem; }
+}
+
+@media (max-width: 63.99em) {
+  /* Navigation becomes a full-screen overlay */
+  .burger { display: inline-grid; }
+  .nav__links { position: fixed; inset: 0; z-index: 110; flex-direction: column; justify-content: center; gap: 1.2rem; background: var(--espresso); clip-path: circle(0 at calc(100% - 2.5rem) 2.5rem); visibility: hidden; transition: clip-path .9s var(--ease-io), visibility 0s .9s; }
+  .nav__links.is-open { clip-path: circle(150% at calc(100% - 2.5rem) 2.5rem); visibility: visible; transition: clip-path .9s var(--ease-io), visibility 0s; }
+  .nav__links a:not(.btn) { font: 400 2rem/1.2 var(--serif); letter-spacing: .02em; text-transform: none; }
+  .nav.menu-open { background: transparent; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+
+  .filters { grid-template-columns: repeat(3, 1fr); }
+  .filters .field--wide { grid-column: 1 / -1; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .results[data-view="map"] { grid-template-columns: 1fr; }
+  .results__map { position: static; }
+  .results[data-view="map"] .results__list { max-height: none; overflow: visible; padding: 0; }
+  .results[data-view="map"] .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .map { height: 28rem; }
+  .cities { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .city:nth-child(even), .city:nth-child(even):nth-last-child(-n+1) { margin-top: 0; }
+  .city:nth-child(3n+2) { margin-top: 1.6rem; }
+  .sidecard { position: static; }
+  .credits ul { columns: 1; }
+}
+
+@media (max-width: 44em) {
+  :root { --nav-h: 4.1rem; }
+  .brand__text { font-size: 1.45rem; }
+  .hero { align-items: flex-end; padding-bottom: 3rem; }
+  .finder { flex-direction: column; }
+  .finder__field { padding: 0 1rem; border-bottom: 1px solid var(--line); }
+  .finder__locate { justify-content: center; min-height: 3.4rem; border-left: 0; border-bottom: 1px solid var(--line); }
+  .finder__go { width: 100%; }
+  .hero__stats { gap: .6rem 1.4rem; margin-top: 1.6rem; }
+  .filters { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .filters .field:first-child { grid-column: 1 / -1; }
+  .toolbar { flex-direction: column; align-items: stretch; }
+  .toolbar__tools { justify-content: space-between; }
+  .seg { width: 100%; }
+  .seg button { flex: 1; justify-content: center; }
+  .grid, .results[data-view="map"] .grid { grid-template-columns: 1fr; gap: 1.6rem; }
+  .card--compact { flex-direction: column; }
+  .card--compact .card__media { flex: none; aspect-ratio: 3 / 2; min-height: 0; }
+  .map { height: 24rem; }
+  .cities { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; }
+  .city:nth-child(3n+2) { margin-top: 0; }
+  .city:nth-child(even) { margin-top: 1.4rem; }
+  .city__name { font-size: 1.5rem; }
+  .story__small { border-width: .45rem; }
+  .gallery3 { grid-template-columns: 1fr 1fr; grid-template-rows: 12rem 8rem; }
+  .gallery3 figure:first-child { grid-column: 1 / -1; grid-row: auto; }
+  .dhero { min-height: 30rem; }
+  .pager__nav { padding: 0 .6rem; }
+}
+
+@media (min-width: 1920px) { html { font-size: 112.5%; } }
+@media (min-width: 2560px) { html { font-size: 150%; } }
+
+/* ---------- Preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .rv { opacity: 1; transform: none; }
+  .js .mask { clip-path: none; }
+  .js .mask img { scale: 1; }
+  .js .mask img[data-parallax] { scale: 1.14; }
+}
+@media (prefers-contrast: more) {
+  :root { --muted: #2d2420; --line: rgba(33, 26, 23, .6); }
+}
